@@ -1,0 +1,72 @@
+{
+  "$schema": "./fluffPatterns.schema.json",
+  "version": "1.0.0",
+  "categories": {
+    "recapOpeners": {
+      "description": "Sycophantic / filler conversational openers.",
+      "weight": 1.0,
+      "patterns": [
+        "^\\s*(great|excellent|fantastic|wonderful|brilliant|amazing|awesome|perfect|nice)\\s+question[!.]?\\s*",
+        "^\\s*(sure|of course|certainly|absolutely|definitely|happy to help)[!.,]?\\s*",
+        "^\\s*(no problem|my pleasure|glad to help)[!.,]?\\s*",
+        "^\\s*(that('s| is) a (great|good|fantastic|wonderful|interesting) (question|point|thought))[!.,]?\\s*"
+      ]
+    },
+    "softEndings": {
+      "description": "Filler closers that invite continuation but add no value.",
+      "weight": 1.2,
+      "patterns": [
+        "\\blet me know if (you )?(have|need|want)[^.!?]*[.!?]\\s*$",
+        "\\bhope (this|that) helps[!.]?\\s*$",
+        "\\bfeel free to (ask|reach out|let me know)[^.!?]*[.!?]\\s*$",
+        "\\bif you (have|need)[^.!?]*(questions?|clarification|more (info|information))[^.!?]*[.!?]\\s*$",
+        "\\bhappy to (help|elaborate|expand)[^.!?]*[.!?]\\s*$",
+        "\\bdon'?t hesitate to[^.!?]*[.!?]\\s*$"
+      ]
+    },
+    "hedgeClusters": {
+      "description": "Unnecessary hedging and disclaimers.",
+      "weight": 0.9,
+      "patterns": [
+        "\\bit('?s| is) (worth|important) (noting|mentioning|remembering) that\\b",
+        "\\bkeep in mind that\\b",
+        "\\bit('?s| is) important to (note|remember|consider) that\\b",
+        "\\bplease note that\\b",
+        "\\bit should be noted that\\b",
+        "\\b(generally|typically|usually) speaking\\b",
+        "\\bin my (humble )?opinion\\b"
+      ]
+    },
+    "unsolicitedAlternatives": {
+      "description": "Offers options the user did not ask for.",
+      "weight": 1.0,
+      "patterns": [
+        "\\banother (approach|option|way|method) (could|would|might) be\\b",
+        "\\byou (might|may|could) also (consider|want to|like to)\\b",
+        "\\balternatively,\\s",
+        "\\bif you('?d| would) prefer\\b",
+        "\\bone option (is|would be)\\b"
+      ]
+    },
+    "paddingTransitions": {
+      "description": "Transition phrases that recap or pad.",
+      "weight": 0.8,
+      "patterns": [
+        "^\\s*in (conclusion|summary|short|essence)[,.]\\s*",
+        "^\\s*to (summarize|sum up|recap|wrap up)[,.]\\s*",
+        "^\\s*as (mentioned|stated|noted) (above|earlier|previously)[,.]\\s*",
+        "^\\s*as (i|we) (mentioned|said|stated) (above|earlier|before)[,.]\\s*",
+        "^\\s*overall[,.]\\s*"
+      ]
+    },
+    "restatements": {
+      "description": "Sentences that mirror the user's prompt back.",
+      "weight": 1.1,
+      "patterns": [
+        "^\\s*(so |okay,? |alright,? )?(you('?re| are)|you want|you'?re asking|you'?re wondering|you would like)[^.!?]*[.!?]",
+        "^\\s*(if i understand (you )?correctly|to clarify your question|based on your question)[^.!?]*[.!?]"
+      ]
+    }
+  },
+  "defaultThreshold": 35
+}

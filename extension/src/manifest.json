@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "TokenGuard \u2014 Concise LLM Replies",
+  "short_name": "TokenGuard",
+  "version": "0.1.0",
+  "version_name": "0.1.0",
+  "description": "Force ChatGPT and Claude to be direct. Strip fluff, optimize prompts, and track tokens saved \u2014 all locally.",
+  "author": "TokenGuard",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*",
+    "https://claude.ai/*"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "TokenGuard",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chat.openai.com/*", "https://chatgpt.com/*"],
+      "js": ["content/chatgpt-injector.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://claude.ai/*"],
+      "js": ["content/claude-injector.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "tokenguard@tokenguard.dev",
+      "strict_min_version": "115.0"
+    }
+  }
+}

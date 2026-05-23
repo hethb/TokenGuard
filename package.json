@@ -1,0 +1,27 @@
+{
+  "name": "tokenguard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TokenGuard — middleware that forces LLM chatbots to be concise.",
+  "workspaces": [
+    "shared",
+    "extension",
+    "backend",
+    "dashboard"
+  ],
+  "scripts": {
+    "build": "npm run build -ws --if-present",
+    "build:shared": "npm run build -w @tokenguard/shared",
+    "build:extension": "npm run build -w @tokenguard/extension",
+    "build:backend": "npm run build -w @tokenguard/backend",
+    "build:dashboard": "npm run build -w @tokenguard/dashboard",
+    "dev:backend": "npm run dev -w @tokenguard/backend",
+    "dev:dashboard": "npm run dev -w @tokenguard/dashboard",
+    "watch:extension": "npm run build:watch -w @tokenguard/extension",
+    "test": "npm run test -w @tokenguard/backend",
+    "lint": "npm run lint -ws --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

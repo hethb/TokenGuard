@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>TokenGuard · Settings</title>
+    <style>
+      :root { color-scheme: dark; }
+      html, body { margin: 0; background: #0f1115; color: #f5f5f7; font-family: ui-sans-serif, system-ui, sans-serif; }
+      .wrap { max-width: 720px; margin: 32px auto; padding: 0 24px 64px; }
+      h1 { font-size: 22px; margin: 0 0 4px; }
+      p.lede { color: #9aa3b2; margin: 0 0 24px; }
+      section { background: #161a21; border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+      h2 { font-size: 14px; margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #cbd1da; }
+      label { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 13px; }
+      label:last-child { border-bottom: none; }
+      input[type="text"], input[type="url"], input[type="password"], input[type="number"] {
+        background: #0f1115; border: 1px solid rgba(255,255,255,0.08); color: #f5f5f7; border-radius: 6px;
+        padding: 6px 8px; font-size: 13px; min-width: 220px;
+      }
+      textarea {
+        width: 100%; min-height: 180px; background: #0f1115; color: #f5f5f7;
+        border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 10px; font-family: ui-monospace, Menlo, monospace; font-size: 12.5px;
+        box-sizing: border-box; resize: vertical;
+      }
+      input[type="checkbox"] { accent-color: #4f7cff; transform: scale(1.1); }
+      input[type="range"] { accent-color: #4f7cff; }
+      button.primary {
+        background: #4f7cff; color: #fff; border: 0; border-radius: 8px; padding: 8px 14px;
+        font-size: 13px; font-weight: 600; cursor: pointer;
+      }
+      .footer-row { display: flex; gap: 8px; justify-content: flex-end; }
+      .pill { font-size: 11px; padding: 2px 6px; border-radius: 999px; background: #2a2f3a; color: #9aa3b2; margin-left: 6px; }
+      .help { font-size: 11px; color: #6b7385; margin-top: 4px; }
+      .saved { font-size: 12px; color: #6ee7a3; margin-right: auto; opacity: 0; transition: opacity 200ms; }
+      .saved.shown { opacity: 1; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>TokenGuard settings <span class="pill" id="version">v0.1.0</span></h1>
+      <p class="lede">Configure how TokenGuard rewrites prompts, enforces conciseness, and estimates costs.</p>
+
+      <section>
+        <h2>Behavior</h2>
+        <label>
+          <span>Enable TokenGuard</span>
+          <input type="checkbox" id="enabled">
+        </label>
+        <label>
+          <span>Optimize prompts before sending</span>
+          <input type="checkbox" id="optimizePrompt">
+        </label>
+        <label>
+          <span>Show diff overlay on send</span>
+          <input type="checkbox" id="showDiffOverlay">
+        </label>
+        <label>
+          <span>Inject system-prompt enforcer in new chats</span>
+          <input type="checkbox" id="enforceSystemPrompt">
+        </label>
+        <label>
+          <span>Fluff threshold (0–100)</span>
+          <span style="display:flex;align-items:center;gap:8px">
+            <input type="range" id="fluffThresholdRange" min="0" max="100" step="5">
+            <input type="number" id="fluffThreshold" min="0" max="100" step="5" style="width:60px;">
+          </span>
+        </label>
+      </section>
+
+      <section>
+        <h2>System prompt template</h2>
+        <textarea id="systemPromptTemplate" spellcheck="false"></textarea>
+        <p class="help">Prepended to the first user message of each new chat (extensions cannot inject true system messages).</p>
+      </section>
+
+      <section>
+        <h2>Backend (optional)</h2>
+        <p class="help" style="margin-top:0;margin-bottom:8px;">
+          TokenGuard runs fully locally by default. Add a backend only if you want LLM-powered prompt
+          rewrites or cross-device history. Leave blank to stay local.
+        </p>
+        <label>
+          <span>API base URL</span>
+          <input type="url" id="apiBaseUrl" placeholder="https://your-tokenguard.example.com">
+        </label>
+        <label>
+          <span>API key (sent as Bearer)</span>
+          <input type="password" id="apiKey" placeholder="optional">
+        </label>
+        <p class="help">Stored via <code>chrome.storage.sync</code>. Never written to localStorage.</p>
+      </section>
+
+      <section>
+        <h2>Pricing (USD per 1k tokens)</h2>
+        <label>
+          <span>Model label</span>
+          <input type="text" id="modelLabel">
+        </label>
+        <label>
+          <span>Input price</span>
+          <input type="number" id="inputPerK" step="0.0001" min="0">
+        </label>
+        <label>
+          <span>Output price</span>
+          <input type="number" id="outputPerK" step="0.0001" min="0">
+        </label>
+      </section>
+
+      <div class="footer-row">
+        <span class="saved" id="saved">Saved.</span>
+        <button class="primary" id="save">Save</button>
+      </div>
+    </div>
+    <script src="options.js"></script>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "@tokenguard/extension",
+  "version": "0.1.0",
+  "description": "TokenGuard browser extension (Chrome MV3, Firefox-compatible).",
+  "private": true,
+  "scripts": {
+    "build": "tsc --noEmit && node build.mjs",
+    "build:watch": "node build.mjs --watch",
+    "clean": "rm -rf dist release",
+    "icons": "node scripts/generate-icons.mjs --force",
+    "package": "npm run build && node scripts/package.mjs",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tokenguard/shared": "file:../shared",
+    "tiktoken": "^1.0.15"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.268",
+    "esbuild": "^0.21.5",
+    "typescript": "^5.4.5"
+  }
+}

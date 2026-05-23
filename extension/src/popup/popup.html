@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TokenGuard</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+          Roboto, sans-serif;
+        background: #14171c;
+        color: #f5f5f7;
+      }
+      body {
+        width: 340px;
+        padding: 16px;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+      h1 {
+        font-size: 14px;
+        margin: 0;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        color: #cbd1da;
+      }
+      .pill {
+        font-size: 10px;
+        padding: 2px 6px;
+        border-radius: 999px;
+        background: #2a2f3a;
+        color: #9aa3b2;
+      }
+      .stat {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .stat:last-of-type {
+        border-bottom: none;
+      }
+      .stat .label {
+        color: #9aa3b2;
+        font-size: 12px;
+      }
+      .stat .value {
+        font-variant-numeric: tabular-nums;
+        font-weight: 600;
+      }
+      .value.green {
+        color: #6ee7a3;
+      }
+      .value.amber {
+        color: #facc15;
+      }
+      .value.red {
+        color: #fda4a4;
+      }
+      .live {
+        margin-top: 12px;
+        background: #1c2027;
+        border-radius: 8px;
+        padding: 10px;
+      }
+      textarea {
+        width: 100%;
+        min-height: 70px;
+        background: #0f1115;
+        color: #f5f5f7;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+        padding: 8px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        resize: vertical;
+        box-sizing: border-box;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      button {
+        flex: 1;
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: #2a2f3a;
+        color: #f5f5f7;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      button.primary {
+        background: #4f7cff;
+        border-color: #4f7cff;
+      }
+      button:hover {
+        filter: brightness(1.08);
+      }
+      .live-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #9aa3b2;
+        margin-top: 6px;
+      }
+      footer {
+        margin-top: 14px;
+        font-size: 11px;
+        color: #6b7385;
+        text-align: center;
+      }
+      footer a {
+        color: #6790ff;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>TokenGuard</h1>
+      <span class="pill" id="counter-engine">heuristic</span>
+    </header>
+
+    <section>
+      <div class="stat">
+        <span class="label">Tokens this session</span>
+        <span class="value" id="stat-total">0</span>
+      </div>
+      <div class="stat">
+        <span class="label">Saved by TokenGuard</span>
+        <span class="value green" id="stat-saved">0</span>
+      </div>
+      <div class="stat">
+        <span class="label">Estimated cost</span>
+        <span class="value" id="stat-cost">$0.0000</span>
+      </div>
+      <div class="stat">
+        <span class="label">Optimizations · Enforcements</span>
+        <span class="value" id="stat-counts">0 · 0</span>
+      </div>
+    </section>
+
+    <section class="live">
+      <div style="font-size: 12px; color: #cbd1da; margin-bottom: 6px;">
+        Live token counter
+      </div>
+      <textarea
+        id="live-input"
+        placeholder="Paste a prompt to estimate its token count…"
+      ></textarea>
+      <div class="live-meta">
+        <span><span id="live-tokens">0</span> tokens</span>
+        <span id="live-cost">~ $0.0000 input</span>
+      </div>
+    </section>
+
+    <div class="row">
+      <button id="reset">Reset session</button>
+      <button id="open-options" class="primary">Settings</button>
+    </div>
+
+    <footer>
+      MV3 extension · <a href="#" id="docs">docs</a>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
