@@ -1,0 +1,20 @@
+title: TokenGuard
+description: Force ChatGPT and Claude to be concise. Strip fluff, optimize prompts, track tokens saved.
+theme: jekyll-theme-minimal
+url: https://hethb.github.io
+baseurl: /TokenGuard
+
+# Files Jekyll should leave alone — these are the actual project, not the site.
+exclude:
+  - extension/
+  - backend/
+  - dashboard/
+  - shared/
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+  - vitest.config.ts
+  - .gitignore
+  - DEPLOY.md
+  - DESCRIPTION.md

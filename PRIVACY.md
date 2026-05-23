@@ -1,3 +1,9 @@
+---
+title: Privacy Policy
+layout: default
+permalink: /privacy/
+---
+
 # TokenGuard — Privacy Policy
 
 _Last updated: 2026-05-22_
